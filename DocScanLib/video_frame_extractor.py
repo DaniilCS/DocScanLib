@@ -30,4 +30,4 @@ def extract_frames(video_path: str, extract_frame_number: int):
 
         frame_count += 1
 
-    return extracted_frame_count, frames
+    return frames

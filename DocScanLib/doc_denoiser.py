@@ -12,6 +12,10 @@ PATH = 'state.pth'
 
 
 def cut_image_to_pieces(image):
+    """
+    :param image: image to cut for model processing
+    :return: list of image pieces
+    """
     image_pieces = []
     for i in range(8):
         for j in range(8):
@@ -20,6 +24,10 @@ def cut_image_to_pieces(image):
 
 
 def merge_pieces_to_image(img_list):
+    """
+    :param img_list: list with pieces precessed by model
+    :return: one merged image
+    """
     width, height = 920, 1280
     big_img = np.zeros((height, width, 3), dtype=np.uint8)
     for i in range(8):
@@ -35,6 +43,11 @@ def merge_pieces_to_image(img_list):
 
 
 def denoise_image(image_to_denoise):
+    """
+    denoise image using model autoencoder
+    :param image_to_denoise: image of document after blending
+    :return: denoised image of document
+    """
     dim = (115, 160)
     cleaned_images = []
     images = cut_image_to_pieces(image_to_denoise)

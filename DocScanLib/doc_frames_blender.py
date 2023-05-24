@@ -3,6 +3,11 @@ import numpy as np
 
 
 def blend_docs(detected_docs):
+    """
+    Blend docs with sift finding key points and alpha-blending
+    :param detected_docs: array with images of detected document
+    :return: one blended document
+    """
     count_images = len(detected_docs)
     img = detected_docs[0]
 
@@ -23,7 +28,6 @@ def blend_docs(detected_docs):
         affine_transform, _ = cv2.estimateAffine2D(src_pts, dst_pts)
         img1_aligned = cv2.warpAffine(img, affine_transform, (img.shape[1], img.shape[0]))
 
-        cv2.imwrite('affine.jpg', img1_aligned)
         img = cv2.addWeighted(img1_aligned, 0.5, img2, 0.5, 0)
 
     return img

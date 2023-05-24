@@ -66,7 +66,7 @@ def doc_scan_pipeline(img, width: int, height: int):
     cv2.drawContours(image=img_contours, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=5)
 
     biggest, max_area = biggest_contour(contours)
-    if max_area < 0.6 * width * height:
+    if max_area > 0.6 * width * height:
         return None
 
     biggest = reorder_coordinates(biggest)
